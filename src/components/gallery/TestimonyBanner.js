@@ -1,0 +1,22 @@
+import Link from 'next/link'
+
+export default function TestimonyBanner() {
+  return (
+    <div className="bg-brand-primary py-16 md:py-20 text-center text-white">
+      <div className="max-w-4xl mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold italic mb-4">
+          &ldquo;Every Moment is a Testimony of God&rsquo;s Grace&rdquo;
+        </h2>
+        <p className="text-sm md:text-base mb-8 opacity-90 uppercase tracking-wide">
+          Philippians 4:13
+        </p>
+        <Link
+          href="/contact"
+          className="inline-block bg-banner text-white px-8 py-3 text-sm font-semibold uppercase tracking-wide hover:opacity-90 transition-opacity"
+        >
+          Join Our Service
+        </Link>
+      </div>
+    </div>
+  )
+}
