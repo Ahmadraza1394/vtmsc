@@ -19,18 +19,6 @@ export default function EventsPage() {
       />
 
       <UpcomingEvents />
-
-      <Section className="bg-background-light">
-        <div>
-          <Heading level="h2" className="mb-6">
-            Past Events
-          </Heading>
-          <p className="text-gray-600">
-            {/* Content section placeholder */}
-            Past event highlights and photos will be displayed here.
-          </p>
-        </div>
-      </Section>
     </>
   );
 }

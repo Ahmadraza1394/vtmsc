@@ -4,8 +4,8 @@ import PageHero from "@/components/shared/PageHero";
 import BlogPost from "@/components/blog/BlogPost";
 import Newsletter from "@/components/shared/Newsletter";
 
-// Sample blog posts data (in real app, this would come from CMS/database)
-const blogPosts = {
+// Fallback blog posts data
+const fallbackBlogPosts = {
   "god-is-good-all-the-time": {
     id: 1,
     title: "God Is Good All the Time!",
@@ -186,9 +186,39 @@ const blogPosts = {
 };
 
 export async function generateMetadata({ params }) {
-  const post = blogPosts[params.slug];
+  const resolvedParams = await params;
+  let post = null;
+
+  // Try to fetch from database
+  try {
+    const baseUrl = "http://localhost:3000";
+    const response = await fetch(
+      `${baseUrl}/api/blogs/slug/${resolvedParams.slug}`,
+      {
+        cache: "no-store",
+      },
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data.success) {
+        post = data.data;
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching blog for metadata:", error);
+  }
 
   if (!post) {
+    // Try fallback data
+    const fallbackPost = fallbackBlogPosts[resolvedParams.slug];
+    if (fallbackPost) {
+      return {
+        title: `${fallbackPost.title} - Voice Tabernacle Blog`,
+        description: fallbackPost.excerpt,
+      };
+    }
+
     return {
       title: "Post Not Found - Voice Tabernacle",
     };
@@ -196,12 +226,39 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${post.title} - Voice Tabernacle Blog`,
-    description: post.excerpt,
+    description: post.excerpt || post.seo?.metaDescription,
+    keywords: post.seo?.keywords?.join(", "),
   };
 }
 
-export default function BlogPostPage({ params }) {
-  const post = blogPosts[params.slug];
+export default async function BlogPostPage({ params }) {
+  const resolvedParams = await params;
+  let post = null;
+
+  // Try to fetch from database first
+  try {
+    const baseUrl = "http://localhost:3000";
+    const response = await fetch(
+      `${baseUrl}/api/blogs/slug/${resolvedParams.slug}`,
+      {
+        cache: "no-store",
+      },
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data.success) {
+        post = data.data;
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching blog post:", error);
+  }
+
+  // If no post found in database, try fallback data
+  if (!post) {
+    post = fallbackBlogPosts[resolvedParams.slug];
+  }
 
   if (!post) {
     notFound();
@@ -212,7 +269,7 @@ export default function BlogPostPage({ params }) {
       <PageHero
         title={post.title}
         subtitle={post.category}
-        image={post.image}
+        image={post.featuredImage?.url || post.image}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Blog", href: "/blogs" },
