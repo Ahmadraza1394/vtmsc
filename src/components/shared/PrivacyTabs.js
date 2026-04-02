@@ -50,10 +50,11 @@ export default function PrivacyTabs() {
                 Collection of Personal Information
               </h3>
               <p className="text-gray-600 mb-4">
-                We collect information you provide directly to us when you
-                register for events, subscribe to our newsletter, or make a
-                donation. This may include your name, email address, phone
-                number, and payment details.
+                We don&apos;t sell, trade, or otherwise transfer your personal
+                information directly to us when you register for events,
+                subscribe to our newsletter, or make a donation. This may
+                include your name, email address, phone number, and payment
+                details.
               </p>
             </div>
 
@@ -252,8 +253,9 @@ export default function PrivacyTabs() {
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-600 mb-6 text-lg">
                 To be a thriving, multicultural church community that transforms
-                lives and communities through the power of God's love, creating
-                lasting positive change that extends far beyond our walls.
+                lives and communities through the power of God&apos;s love,
+                creating lasting positive change that extends far beyond our
+                walls.
               </p>
 
               <h3 className="text-lg font-semibold text-brand-primary mb-4">

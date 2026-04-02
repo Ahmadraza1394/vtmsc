@@ -1,9 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { isAdminAuthenticated, getAdminEmail, logoutAdmin } from "@/lib/auth";
+import Navbar from "@/components/layout/Navbar";
 
 export default function AdminDashboard() {
+  const router = useRouter();
   const [stats, setStats] = useState({
     totalEvents: 0,
     totalBlogs: 0,
@@ -14,7 +18,13 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Check authentication
+    if (!isAdminAuthenticated()) {
+      router.push("/admin/login");
+      return;
+    }
     fetchStats();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchStats = async () => {
@@ -48,13 +58,50 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gray-50">
+      {/* Website Navigation */}
+      <Navbar />
+
+      {/* Admin Actions Bar */}
+      <div className="bg-green-600 text-white py-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-4">
+              <span className="text-sm font-medium">Admin Panel</span>
+              <Link
+                href="/admin/events"
+                className="text-green-100 hover:text-white px-3 py-1 rounded text-sm transition-colors"
+              >
+                Events
+              </Link>
+              <Link
+                href="/admin/blogs"
+                className="text-green-100 hover:text-white px-3 py-1 rounded text-sm transition-colors"
+              >
+                Blogs
+              </Link>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-green-100">
+                {getAdminEmail() || "Admin"}
+              </span>
+              <button
+                onClick={logoutAdmin}
+                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors text-sm"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
-      <div className="bg-white shadow-lg border-b border-gray-200">
+      <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-8">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-brand-primary to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                 Admin Dashboard
               </h1>
               <p className="text-gray-600 mt-2 text-lg">
@@ -62,25 +109,49 @@ export default function AdminDashboard() {
               </p>
             </div>
             <div className="flex items-center gap-4">
-              <Link
-                href="/"
-                className="bg-brand-primary text-white px-6 py-3 rounded-xl hover:bg-opacity-90 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl"
-              >
-                <svg
-                  className="w-5 h-5 inline mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-gray-600">
+                  Welcome, {getAdminEmail() || "Admin"}
+                </span>
+                <button
+                  onClick={logoutAdmin}
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors flex items-center gap-2"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-                View Website
-              </Link>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  Logout
+                </button>
+                <Link
+                  href="/"
+                  className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors flex items-center gap-2"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    />
+                  </svg>
+                  View Website
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -105,15 +176,15 @@ export default function AdminDashboard() {
                 <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">
                   Total Events
                 </p>
-                <p className="text-3xl font-bold text-gray-900">
+                <div className="text-3xl font-bold text-gray-900">
                   {loading ? (
                     <div className="animate-pulse bg-gray-200 h-8 w-12 rounded"></div>
                   ) : (
                     stats.totalEvents
                   )}
-                </p>
+                </div>
               </div>
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-brand-primary to-purple-600">
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600">
                 <svg
                   className="w-8 h-8 text-white"
                   fill="none"
@@ -137,13 +208,13 @@ export default function AdminDashboard() {
                 <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">
                   Total Blogs
                 </p>
-                <p className="text-3xl font-bold text-gray-900">
+                <div className="text-3xl font-bold text-gray-900">
                   {loading ? (
                     <div className="animate-pulse bg-gray-200 h-8 w-12 rounded"></div>
                   ) : (
                     stats.totalBlogs
                   )}
-                </p>
+                </div>
               </div>
               <div className="p-4 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600">
                 <svg
@@ -169,15 +240,15 @@ export default function AdminDashboard() {
                 <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">
                   Published
                 </p>
-                <p className="text-3xl font-bold text-gray-900">
+                <div className="text-3xl font-bold text-gray-900">
                   {loading ? (
                     <div className="animate-pulse bg-gray-200 h-8 w-12 rounded"></div>
                   ) : (
                     stats.publishedEvents + stats.publishedBlogs
                   )}
-                </p>
+                </div>
               </div>
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600">
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-green-600 to-green-700">
                 <svg
                   className="w-8 h-8 text-white"
                   fill="none"
@@ -207,15 +278,15 @@ export default function AdminDashboard() {
                 <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">
                   Drafts
                 </p>
-                <p className="text-3xl font-bold text-gray-900">
+                <div className="text-3xl font-bold text-gray-900">
                   {loading ? (
                     <div className="animate-pulse bg-gray-200 h-8 w-12 rounded"></div>
                   ) : (
                     stats.draftBlogs
                   )}
-                </p>
+                </div>
               </div>
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600">
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-green-400 to-green-500">
                 <svg
                   className="w-8 h-8 text-white"
                   fill="none"
@@ -445,110 +516,6 @@ export default function AdminDashboard() {
                   </div>
                 </Link>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Quick Tips */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl mb-4">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
-              Quick Tips
-            </h2>
-            <p className="text-gray-600">Essential actions to get started</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 mb-3">
-                <svg
-                  className="w-8 h-8 text-brand-primary mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">
-                Create Events
-              </h3>
-              <p className="text-sm text-gray-600">
-                Add upcoming church events with dates, images, and descriptions
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 mb-3">
-                <svg
-                  className="w-8 h-8 text-green-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Write Blogs</h3>
-              <p className="text-sm text-gray-600">
-                Share articles, sermons, and community updates with rich text
-                editing
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 mb-3">
-                <svg
-                  className="w-8 h-8 text-blue-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">
-                Publish Content
-              </h3>
-              <p className="text-sm text-gray-600">
-                Make your content live on the website for the community to see
-              </p>
             </div>
           </div>
         </div>

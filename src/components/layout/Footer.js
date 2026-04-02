@@ -225,7 +225,7 @@ export default function Footer() {
               Terms of Service
             </Link>
             <Link
-              href="/admin"
+              href="/admin/login"
               className="hover:text-brand-primary transition-colors flex items-center gap-1"
             >
               <svg
