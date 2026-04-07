@@ -7,9 +7,9 @@ const slides = [
   {
     id: 1,
     badge: "WELCOME TO OUR COMMUNITY",
-    title: "Whoever Believes Has Eternal Life",
+    title: "Real support. Real programs. Real pathways forward.",
     subtitle:
-      '"And he said unto them, Go ye into all the world, and preach the gospel to every creature." - Mark 16:15',
+      "We provide youth and families with access to housing support, employment opportunities, mentorship, and community integration.",
     image: "/images/IMG_6080-scaled.jpg",
     showContent: true,
   },
@@ -103,21 +103,6 @@ export default function HeroCarousel() {
                   <p className="text-base md:text-lg lg:text-xl text-gray-200 italic mb-6 md:mb-8 leading-relaxed">
                     {slide.subtitle}
                   </p>
-
-                  {/* <div className="flex flex-col sm:flex-row gap-4">
-                    <Link
-                      href="/give"
-                      className="inline-block bg-brand-primary text-white px-6 md:px-8 py-3 md:py-4 text-sm md:text-base font-semibold hover:opacity-90 transition-opacity text-center uppercase tracking-wide"
-                    >
-                      Donate Now
-                    </Link>
-                    <Link
-                      href="/sermons"
-                      className="inline-block bg-transparent border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 text-sm md:text-base font-semibold hover:bg-white hover:text-gray-900 transition-all text-center uppercase tracking-wide"
-                    >
-                      Watch Sermons
-                    </Link>
-                  </div> */}
                 </div>
               </div>
             </div>

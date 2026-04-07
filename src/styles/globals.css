@@ -3,8 +3,30 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Main Colors */
+    --color-primary: #ffffff;
+    --color-secondary: #678d34;
+    --color-tertiary: #9b3830;
+    --color-background-light: #f5f7f0;
+    --color-footer: #1a1a1a;
+
+    /* Derived Colors */
+    --color-secondary-light: #7fa03f;
+    --color-secondary-dark: #556b2a;
+    --color-tertiary-light: #b04439;
+    --color-tertiary-dark: #7d2d26;
+
+    /* Text Colors */
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #4a4a4a;
+    --color-text-light: #ffffff;
+  }
+
   body {
-    @apply bg-background-main text-gray-900 font-lato;
+    background-color: var(--color-primary);
+    color: var(--color-text-primary);
+    @apply font-lato;
   }
 
   h1,
@@ -14,5 +36,111 @@
   h5,
   h6 {
     @apply font-playfair;
+    color: var(--color-text-primary);
+  }
+}
+
+@layer components {
+  /* Primary Button */
+  .btn-primary {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    @apply px-6 py-3 rounded-lg font-semibold transition-colors hover:opacity-90;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-secondary-dark);
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    background-color: var(--color-tertiary);
+    color: var(--color-text-light);
+    @apply px-6 py-3 rounded-lg font-semibold transition-colors hover:opacity-90;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-tertiary-dark);
+  }
+
+  /* Outline Button */
+  .btn-outline {
+    border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
+    background-color: transparent;
+    @apply px-6 py-3 rounded-lg font-semibold transition-colors;
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+  }
+
+  /* Card Styles */
+  .card {
+    background-color: var(--color-primary);
+    @apply rounded-2xl shadow-lg p-6;
+  }
+
+  .card-light {
+    background-color: var(--color-background-light);
+    @apply rounded-2xl p-6;
+  }
+
+  /* Section Backgrounds */
+  .section-light {
+    background-color: var(--color-background-light);
+  }
+
+  .section-primary {
+    background-color: var(--color-primary);
+  }
+
+  .section-secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+  }
+
+  .section-footer {
+    background-color: var(--color-footer);
+    color: var(--color-text-light);
+  }
+
+  /* Gradient Backgrounds */
+  .gradient-primary {
+    background: linear-gradient(
+      135deg,
+      var(--color-secondary) 0%,
+      var(--color-secondary-light) 100%
+    );
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(
+      135deg,
+      var(--color-tertiary) 0%,
+      var(--color-tertiary-light) 100%
+    );
+  }
+
+  /* Text Colors */
+  .text-primary {
+    color: var(--color-text-primary);
+  }
+
+  .text-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  .text-light {
+    color: var(--color-text-light);
+  }
+
+  .text-brand-secondary {
+    color: var(--color-secondary);
+  }
+
+  .text-brand-tertiary {
+    color: var(--color-tertiary);
   }
 }

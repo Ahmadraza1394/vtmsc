@@ -18,7 +18,7 @@ export default function PageHero({ title, subtitle, breadcrumbs, image }) {
             {subtitle}
           </p>
         )}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+        <h1 className="text-4xl text-white md:text-5xl lg:text-6xl font-bold mb-4">
           {title}
         </h1>
         {breadcrumbs && breadcrumbs.length > 0 && (

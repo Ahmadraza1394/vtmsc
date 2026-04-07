@@ -8,12 +8,10 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/programs", label: "Programs" },
   { href: "/about", label: "About" },
-  { href: "/sermons", label: "Sermons" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/blogs", label: "Blog" },
-  { href: "/events", label: "Events" },
-  { href: "/privacy", label: "Privacy" },
+  { href: "/impact", label: "Impact" },
+  { href: "/partners", label: "Partners" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -112,7 +110,7 @@ export default function Navbar() {
                 href="/give"
                 className="bg-brand-primary text-white px-4 py-1 rounded hover:opacity-90 transition-opacity text-xs font-medium"
               >
-                GIVE DONATION
+                SUPPORT US
               </Link>
             </div>
           </div>
@@ -149,7 +147,7 @@ export default function Navbar() {
                 href="/give"
                 className="bg-banner text-white px-6 py-2 rounded hover:opacity-90 transition-opacity text-sm font-medium"
               >
-                GIVE NOW
+                SUPPORT NOW
               </Link>
             </div>
 
@@ -218,7 +216,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="block mx-4 mt-4 text-center bg-banner text-white px-6 py-3 rounded hover:opacity-90 transition-opacity text-sm font-medium"
               >
-                GIVE NOW
+                SUPPORT NOW
               </Link>
 
               <div className="px-4 pt-4 mt-4 border-t border-gray-200">

@@ -9,13 +9,14 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          primary: "#6F9A37",
+          primary: "#678D34",
+          secondary: "#9B3830",
         },
         background: {
           light: "#F5F7F0",
           main: "#FFFFFF",
         },
-        banner: "#90221A",
+        banner: "#9B3830",
         footer: {
           dark: "#1A1A1A",
         },
