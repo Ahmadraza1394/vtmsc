@@ -93,7 +93,7 @@ export default function HomePage() {
                     Youth Development
                   </h3>
                 </div>
-                <p className="text-secondary text-xs sm:text-sm md:text-base leading-relaxed flex-grow">
+                <p className="text-secondary text-xs sm:text-sm md:text-base leading-relaxed flex-grow min-h-[4rem] flex items-center justify-center">
                   Mentorship, leadership training, and educational support for
                   young people ages 14-24
                 </p>
@@ -114,7 +114,7 @@ export default function HomePage() {
                     Housing & Stability
                   </h3>
                 </div>
-                <p className="text-secondary text-xs sm:text-sm md:text-base leading-relaxed flex-grow">
+                <p className="text-secondary text-xs sm:text-sm md:text-base leading-relaxed flex-grow min-h-[4rem] flex items-center justify-center">
                   Housing assistance, homelessness prevention, and stability
                   support for individuals and families
                 </p>
@@ -139,7 +139,7 @@ export default function HomePage() {
                     Workforce Access
                   </h3>
                 </div>
-                <p className="text-secondary text-xs sm:text-sm md:text-base leading-relaxed flex-grow">
+                <p className="text-secondary text-xs sm:text-sm md:text-base leading-relaxed flex-grow min-h-[4rem] flex items-center justify-center">
                   Job training, employment placement, and career development
                   opportunities
                 </p>
@@ -160,7 +160,7 @@ export default function HomePage() {
                     Newcomer Integration
                   </h3>
                 </div>
-                <p className="text-secondary text-xs sm:text-sm md:text-base leading-relaxed flex-grow">
+                <p className="text-secondary text-xs sm:text-sm md:text-base leading-relaxed flex-grow min-h-[4rem] flex items-center justify-center">
                   Support services for new community members including language,
                   cultural, and civic integration
                 </p>

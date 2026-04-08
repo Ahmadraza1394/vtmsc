@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-footer-dark text-white mt-auto">
       <Container>
-        <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <div>
             <Link href="/" className="flex items-center mb-4">
               <img
@@ -203,6 +203,31 @@ export default function Footer() {
                 GIVE DONATION
               </Link>
             </div>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-6 text-white uppercase tracking-wide">
+              Stay Connected
+            </h4>
+            <p className="text-gray-400 text-sm mb-4">
+              Subscribe to our newsletter for updates on programs, events, and
+              community news.
+            </p>
+            <form className="space-y-3">
+              <div>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded text-white placeholder-gray-400 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-sm"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-brand-primary text-white px-4 py-2.5 rounded hover:opacity-90 transition-opacity text-sm font-medium"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
 

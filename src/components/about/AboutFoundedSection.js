@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function AboutFoundedSection() {
   return (
@@ -6,7 +6,7 @@ export default function AboutFoundedSection() {
       <div className="order-2 lg:order-1">
         <img
           src="/images/IMG_6043-600x600.jpg"
-          alt="Church congregation"
+          alt="Community members"
           className="w-full h-auto rounded-lg shadow-lg"
         />
       </div>
@@ -19,11 +19,15 @@ export default function AboutFoundedSection() {
           Founded in 2001
         </h2>
         <p className="text-gray-600 mb-6 leading-relaxed">
-          The Voice Of The Gospel Tabernacle Church is a global ministry reaching out to millions globally, responding to the command of Jesus. We believe in the transformative power of faith and the strength of a united community.
+          Voice Tabernacle Multi Services Center has been serving the Mattapan
+          community for over two decades, providing comprehensive support to
+          underserved youth and families. We believe in the transformative power
+          of community programs and the strength of collaborative partnerships.
         </p>
-        
+
         <div className="border-l-4 border-brand-primary pl-6 mb-8 italic text-gray-700">
-          &ldquo;Go ye into all the world and preach the gospel&rdquo; — Mark 16:15
+          &ldquo;Empowering communities through programs that create pathways to
+          stability, success, and hope.&rdquo;
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4">
@@ -42,5 +46,5 @@ export default function AboutFoundedSection() {
         </div>
       </div>
     </div>
-  )
+  );
 }

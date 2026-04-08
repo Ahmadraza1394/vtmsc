@@ -8,8 +8,9 @@ import ParishBanner from "@/components/about/ParishBanner";
 import Newsletter from "@/components/shared/Newsletter";
 
 export const metadata = {
-  title: "About Us - Voice Tabernacle",
-  description: "Learn more about our church community and mission",
+  title: "About Us - Voice Tabernacle Multi Services Center",
+  description:
+    "Learn about our community-based organization supporting underserved youth and families in Mattapan through comprehensive programs and services",
 };
 
 export default function AboutPage() {

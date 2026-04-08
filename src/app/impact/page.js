@@ -13,24 +13,25 @@ export const metadata = {
 export default function ImpactPage() {
   const stats = [
     {
-      number: "2,500+",
-      label: "Community Members Served",
-      description: "Individuals and families supported annually",
+      number: "450+",
+      label: "Youth Served",
+      description: "Young people ages 12-24 supported through our programs",
     },
     {
-      number: "150+",
-      label: "Youth in Programs",
-      description: "Young people engaged in development activities",
+      number: "320+",
+      label: "Families Supported",
+      description:
+        "Families receiving housing, stability, and support services",
+    },
+    {
+      number: "12",
+      label: "Neighborhoods Reached",
+      description: "Communities across Mattapan and surrounding areas",
     },
     {
       number: "85%",
-      label: "Program Completion Rate",
-      description: "Participants successfully completing programs",
-    },
-    {
-      number: "40+",
-      label: "Community Partners",
-      description: "Organizations working together for change",
+      label: "Program Success Rate",
+      description: "Participants achieving stability and program goals",
     },
   ];
 
@@ -126,7 +127,7 @@ export default function ImpactPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl p-8 mb-4">
+                  <div className="bg-brand-primary text-white rounded-2xl p-8 mb-4">
                     <div className="text-4xl md:text-5xl font-bold mb-2">
                       {stat.number}
                     </div>
@@ -178,45 +179,55 @@ export default function ImpactPage() {
         </div>
 
         {/* Detailed Outcomes */}
-        <div className="py-20 bg-white">
+        <div className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <Container>
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Program Outcomes
               </h2>
-              <p className="text-xl text-gray-600">
-                Detailed results across our key program areas
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Detailed results across our key program areas showing measurable
+                impact in our community
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
               {outcomes.map((outcome, index) => (
-                <div key={index} className="bg-gray-50 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                    {outcome.category}
-                  </h3>
-                  <ul className="space-y-4">
-                    {outcome.achievements.map(
-                      (achievement, achievementIndex) => (
-                        <li key={achievementIndex} className="flex items-start">
-                          <svg
-                            className="w-6 h-6 text-green-500 mr-3 mt-0.5"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          <span className="text-gray-700 text-lg">
-                            {achievement}
-                          </span>
-                        </li>
-                      ),
-                    )}
-                  </ul>
+                <div key={index} className="group">
+                  <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
+                    {/* Header */}
+                    <div className="bg-brand-primary p-6 text-white">
+                      <h3 className="text-xl md:text-2xl font-bold flex items-center">
+                        <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center mr-3">
+                          <span className="text-sm font-bold">{index + 1}</span>
+                        </div>
+                        {outcome.category}
+                      </h3>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6">
+                      <div className="space-y-4">
+                        {outcome.achievements.map(
+                          (achievement, achievementIndex) => (
+                            <div
+                              key={achievementIndex}
+                              className="flex items-start group/item"
+                            >
+                              <div className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-0.5">
+                                <div className="w-2 h-2 bg-brand-primary rounded-full"></div>
+                              </div>
+                              <div className="flex-1">
+                                <p className="text-gray-700 text-base md:text-lg leading-relaxed group-hover/item:text-gray-900 transition-colors">
+                                  {achievement}
+                                </p>
+                              </div>
+                            </div>
+                          ),
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -224,7 +235,7 @@ export default function ImpactPage() {
         </div>
 
         {/* Call to Action */}
-        <div className="bg-gray-900 text-white py-16">
+        <div className="bg-brand-primary text-white py-16">
           <Container>
             <div className="text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -236,7 +247,7 @@ export default function ImpactPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/programs"
-                  className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+                  className="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
                 >
                   Explore Programs
                 </Link>
